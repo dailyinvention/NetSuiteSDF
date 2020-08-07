@@ -220,7 +220,7 @@ export class NetSuiteSDF {
   async _importFiles(files: string[]) {
     const cleanedFiles = _.map(files, file => `${file}`);
     const fileString = cleanedFiles.join(' ');
-    return this.runCommand(CLICommand.ImportFiles, `-paths`, `${fileString}`);
+    return this.runCommand(CLICommand.ImportFiles, `--paths`, `${fileString}`);
   }
 
   async importObjects(context?: any) {
@@ -250,11 +250,11 @@ export class NetSuiteSDF {
     const scriptIdString = scriptIds.join(' ');
     return this.runCommand(
       CLICommand.ImportObjects,
-      `-scriptid`,
+      `--scriptid`,
       scriptIdString,
-      `-type`,
+      `--type`,
       `${scriptType}`,
-      `-destinationfolder`,
+      `--destinationfolder`,
       `${destination}`
     );
   }
@@ -296,7 +296,7 @@ export class NetSuiteSDF {
     }
 
     this.doAddProjectParameter = false;
-    return this.runCommand(CLICommand.ListFiles, `-folder`, `/SuiteScripts`);
+    return this.runCommand(CLICommand.ListFiles, `--folder`, `/SuiteScripts`);
   }
 
   listMissingDependencies() {
@@ -435,7 +435,7 @@ export class NetSuiteSDF {
           const selectionStr = selectedFile
             .map(file => file.scriptid.substring(0, file.scriptid.indexOf('.')))
             .join(' ');
-          this.runCommand(CLICommand.Update, `-scriptid`, `${selectionStr}`);
+          this.runCommand(CLICommand.Update, `--scriptid`, `${selectionStr}`);
         }
       }
     }
@@ -459,7 +459,7 @@ export class NetSuiteSDF {
           ignoreFocusOut: true
         });
         if (objectId) {
-          this.runCommand(CLICommand.UpdateCustomRecordsWithInstances, `-scriptid`, `${objectId}`);
+          this.runCommand(CLICommand.UpdateCustomRecordsWithInstances, `--scriptid`, `${objectId}`);
         }
       }
     } else {
